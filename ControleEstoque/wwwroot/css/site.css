@@ -1,5 +1,20 @@
+:root {
+  --primary-color: #3b82f6;
+  --primary-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  --success-gradient: linear-gradient(135deg, #10b981, #047857);
+  --warning-gradient: linear-gradient(135deg, #f59e0b, #b45309);
+  --danger-gradient: linear-gradient(135deg, #ef4444, #b91c1c);
+  --info-gradient: linear-gradient(135deg, #06b6d4, #0891b2);
+  --neutral-gradient: linear-gradient(135deg, #6b7280, #374151);
+  --bg-main: #f8fafc;
+  --font-family: 'Outfit', sans-serif;
+  --card-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  --card-hover-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
 html {
   font-size: 14px;
+  height: 100%;
 }
 
 @media (min-width: 768px) {
@@ -8,24 +23,169 @@ html {
   }
 }
 
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-main);
+  color: #1e293b;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* Navbar Premium styling */
+.navbar {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #e2e8f0 !important;
+  font-weight: 500;
+}
+
+.navbar-brand {
+  font-weight: 700;
+  color: #1e3a8a !important;
+  font-size: 1.25rem;
+}
+
+.nav-link {
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Custom premium card styles */
+.card-kpi {
+  border: none;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.card-kpi::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-kpi:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--card-hover-shadow);
+}
+
+.card-kpi:hover::before {
+  opacity: 1;
+}
+
+.card-glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  transition: all 0.3s ease;
+}
+
+.card-glass:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+/* Icon backgrounds in KPIs */
+.kpi-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 1.5rem;
+  color: white;
+}
+
+/* Tables design */
+.table-responsive {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: #f1f5f9;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  color: #475569;
+}
+
+.table th, .table td {
+  padding: 1rem 1.25rem;
+  vertical-align: middle;
+}
+
+/* Badges and tags */
+.badge-custom {
+  padding: 0.35em 0.65em;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+/* Pulse animation for low stock alert */
+.pulse-badge {
+  box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Global button redesign */
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.btn-primary-gradient {
+  background: var(--primary-gradient);
+  border: none;
+  color: white;
+}
+
+.btn-primary-gradient:hover {
+  background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+  color: white;
+}
+
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
-
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
-}
-
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+/* Titles and labels styling */
+.dashboard-title {
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  background: linear-gradient(to right, #1e3a8a, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
