@@ -1,15 +1,17 @@
 @model IEnumerable<ControleEstoque.Models.Categoria>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Categorias";
 }
 
-<h1>Index</h1>
+<h1>Categorias</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <form asp-action="Create" method="get" style="display:inline;">
+        <button type="submit" class="btn btn-primary">Criar novo</button>
+    </form> 
 </p>
-<table class="table">
+<table class="table">   
     <thead>
         <tr>
             <th>

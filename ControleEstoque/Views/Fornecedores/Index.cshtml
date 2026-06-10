@@ -1,13 +1,15 @@
 @model IEnumerable<ControleEstoque.Models.Fornecedor>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Fornecedores";
 }
 
-<h1>Index</h1>
+<h1>Fornecedores</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <form asp-action="Create" method="get" style="display:inline;">
+        <button type="submit" class="btn btn-primary">Criar novo</button>
+    </form>
 </p>
 <table class="table">
     <thead>

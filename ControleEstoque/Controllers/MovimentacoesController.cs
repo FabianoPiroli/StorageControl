@@ -53,14 +53,17 @@ namespace ControleEstoque.Controllers
         }
 
         // POST: Movimentacoes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ProdutoId,Tipo,Quantidade,DataMovimentacao,Observacao")] MovimentacaoEstoque movimentacaoEstoque)
         {
             if (ModelState.IsValid)
             {
+                // Se o valor já está em UTC:
+                movimentacaoEstoque.DataMovimentacao = DateTime.SpecifyKind(movimentacaoEstoque.DataMovimentacao, DateTimeKind.Utc);
+                // Ou, se o valor do formulário é hora local e você quer converter para UTC:
+                // movimentacaoEstoque.DataMovimentacao = DateTime.SpecifyKind(movimentacaoEstoque.DataMovimentacao, DateTimeKind.Local).ToUniversalTime();
+
                 _context.Add(movimentacaoEstoque);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -87,8 +90,6 @@ namespace ControleEstoque.Controllers
         }
 
         // POST: Movimentacoes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,ProdutoId,Tipo,Quantidade,DataMovimentacao,Observacao")] MovimentacaoEstoque movimentacaoEstoque)

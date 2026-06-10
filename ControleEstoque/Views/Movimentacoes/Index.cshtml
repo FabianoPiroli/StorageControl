@@ -1,14 +1,15 @@
 @model IEnumerable<ControleEstoque.Models.MovimentacaoEstoque>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Movimentações";
 }
 
-<h1>Index</h1>
+<h1>Movimentações</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
-</p>
+    <form asp-action="Create" method="get" style="display:inline;">
+        <button type="submit" class="btn btn-primary">Criar novo</button>
+    </form>
 <table class="table">
     <thead>
         <tr>
