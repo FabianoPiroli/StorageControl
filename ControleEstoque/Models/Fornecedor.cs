@@ -21,6 +21,10 @@ namespace ControleEstoque.Models
         [EmailAddress]
         public string Email { get; set; }
 
+        [StringLength(200)]
+        public string Endereco { get; set; }
+
+
         public ICollection<Produto>? Produtos { get; set; }
     }
 }
